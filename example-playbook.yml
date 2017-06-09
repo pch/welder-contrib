@@ -1,0 +1,15 @@
+#
+# Playbook
+#
+ssh_url: admin@example.com
+
+modules:
+  - system
+  - swap
+  - firewall
+  - postgres-9.4
+  - rbenv
+  - nginx
+  # - letsencrypt
+  - rails
+  - thumbor

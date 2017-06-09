@@ -1,0 +1,2 @@
+30 2 * * 1 root /usr/bin/letsencrypt renew >> /var/log/le-renew.log 2>&1
+35 2 * * 1 root /bin/systemctl reload nginx >> /var/log/le-renew.log 2>&1

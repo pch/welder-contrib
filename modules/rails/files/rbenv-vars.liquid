@@ -1,0 +1,16 @@
+RAILS_ENV={{rails_env}}
+
+DARABASE_HOST={{ postgres_host }}
+DARABASE_NAME={{ postgres_database }}
+DARABASE_USERNAME={{ postgres_username }}
+DARABASE_PASSWORD={{ vault_postgres_password }}
+
+SECRET_KEY_BASE={{vault_app_secret_key_base}}
+
+APP_DIR={{app_dir}}/current
+
+FACEBOOK_APP_ID={{vault_facebook_app_id}}
+FACEBOOK_SECRET={{vault_facebook_secret}}
+
+THUMBOR_URL=https://{{ thumbor_host }}
+THUMBOR_SECURITY_KEY={{ vault_thumbor_security_key }}

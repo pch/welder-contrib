@@ -1,0 +1,51 @@
+# Setup config
+#
+# Define your global configuration variables here. This file will be parsed
+# to a list of shell variables for your `setup.sh` scripts.
+#
+# Load it in each setup.sh script with:
+#
+#     [[ -f setup/config-variables ]] && source setup/config-variables
+#
+# Variables in shell scripts are prefixed with $cfg_, so `app_name` in yaml
+# will be available as `$cfg_app_name`.
+#
+# Variables defined here are also available in *.liquid templates.
+#
+# -----------------------------------------------------------------------------
+# SECURITY NOTE: Storing passwords in this file and checking them into a git
+#                repository is probably not the smartest idea.
+#
+#                If you want to store passwords in git, put them in vault.yml
+#                file, add it to .gitignore and store encrypted version in git.
+#                See the "Security" section in welder's README for more
+#                information.
+# -----------------------------------------------------------------------------
+
+app_name: example
+app_domain: example.com
+
+# Thumbor image server
+thumbor_host: images.example.com
+thumbor_instances:
+  - 8000
+  - 8001
+  - 8002
+  - 8003
+
+# Postgres
+postgres_host: localhost
+postgres_database: example_production
+postgres_username: example_user
+
+# Ruby & Ruby on Rails
+ruby_version: "2.4.1"
+rails_env: production
+
+app_dir: "/var/www/example"
+app_shared_dir: "/var/www/example/shared"
+app_shared_config_dir: "/var/www/example/shared/config"
+app_uploads_dir: "/var/www/example/shared/public/uploads"
+
+# Let's encrypt
+letsencrypt_web_dir: "/var/www/letsencrypt"

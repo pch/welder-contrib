@@ -1,0 +1,43 @@
+upstream thumbor {
+  {% for port in thumbor_instances %}
+      server 127.0.0.1:{{ port }};
+  {% endfor %}
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name {{ thumbor_host }};
+    include snippets/ssl-{{app_domain}}.conf;
+    include snippets/ssl-params.conf;
+
+    client_max_body_size 4G;
+
+    default_type application/octet-stream;
+
+    merge_slashes off;
+
+    location ~ .well-known/acme-challenge/ {
+        root /var/www/letsencrypt;
+        default_type text/plain;
+    }
+
+    location / {
+        proxy_pass http://thumbor; # match the name of upstream directive which is defined above
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        # Allow cross-origin images between the main app & thumbor
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET';
+        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+    }
+
+    location = /favicon.ico {
+        return 204;
+    }
+}
