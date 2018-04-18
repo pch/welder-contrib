@@ -30,7 +30,7 @@ sudo sed -i -e "s/# LC_ALL.*/LC_ALL=\"en_US.UTF-8\"/" /etc/default/locale
 sudo cp setup/modules/system/files/10periodic /etc/apt/apt.conf.d/10periodic
 sudo chown root $_
 
-sudo cp setup/modules/system/files/10periodic /etc/apt/apt.conf.d/50unattended-upgrades
+sudo cp setup/modules/system/files/50unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
 sudo chown root $_
 
 sudo service unattended-upgrades restart
